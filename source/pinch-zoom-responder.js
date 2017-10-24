@@ -4,7 +4,7 @@ export class PinchZoomResponder {
   constructor (responders, options = {}) {
     this.responders = responders
     this.transformX = options.transformX || true
-    this.transformY = options.transformY || false
+    this.transformY = options.transformY || true 
     this.handlers = {
       onStartShouldSetResponder: this.onStartShouldSetResponder.bind(this),
       onMoveShouldSetResponder: this.onMoveShouldSetResponder.bind(this),

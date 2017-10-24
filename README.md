@@ -63,3 +63,21 @@ The gestureState object has the shape:
 - `scaleY` is the pinch y scale
 - `dx` is the current delta x of the center of the pinch
 - `dy` is the current delta y of the center of the pinch
+
+# Configuration
+
+The responder can also receive a set of options as the second parameter.
+
+```javascript
+var responders = {
+  onPinchStart: (e) => {}
+  onPinchEnd: (e) => {}
+  onResponderMove: (e, gestureState) => {}
+}
+new PinchZoomResponder(responders, options)
+```
+
+The options fields can include:
+
+- `transformX` true | false.  True by default. Enables transformation along the X axis
+- `transformY` true | false.  True by default.  Enables transformation along the Y axis.
