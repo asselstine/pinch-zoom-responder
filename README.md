@@ -27,17 +27,17 @@ class MyComponent extends Component {
       onPinchStart: (e) => {
         console.log('pinch started')
       },
-      
+
       onPinchEnd: (e) => {
         console.log('pinch ended')
       },
-      
+
       onResponderMove: (e, gestureState) => {
         console.log('GestureState is ', gestureState)
       }
     })
   }
-  
+
   render () {
     return (
       <View {...this.pinchZoomResponder.handlers}>
@@ -56,12 +56,10 @@ The gestureState object has the shape:
 }
 ```
 
-`transform` is a 4x4 matrix that can be used with `react-native/Libraries/Utilities/MatrixMath` to easily transform points and graphics.
-`cx` is the pinch X center
-`cy` is the pinch Y center
-`scaleX` is the pinch x scale
-`scaleY` is the pinch y scale
-`dx` is the current delta x of the center of the pinch
-`dy` is the current delta y of the center of the pinch
-
-
+- `transform` is a 4x4 matrix that can be used with `react-native/Libraries/Utilities/MatrixMath` to easily transform points and graphics.
+- `cx` is the pinch X center
+- `cy` is the pinch Y center
+- `scaleX` is the pinch x scale
+- `scaleY` is the pinch y scale
+- `dx` is the current delta x of the center of the pinch
+- `dy` is the current delta y of the center of the pinch
