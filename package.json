@@ -1,0 +1,30 @@
+{
+  "name": "pinch-zoom-responder",
+  "version": "1.0.0",
+  "description": "A React Native gesture responder to recognize pinch and zoom ",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel source --presets babel-preset-es2015 --out-dir distribution"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asselstine/pinch-zoom-responder.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "pinch",
+    "zoom",
+    "responder"
+  ],
+  "author": "Brendan Asselstine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/asselstine/pinch-zoom-responder/issues"
+  },
+  "homepage": "https://github.com/asselstine/pinch-zoom-responder#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
