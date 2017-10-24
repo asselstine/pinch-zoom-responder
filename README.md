@@ -74,10 +74,14 @@ var responders = {
   onPinchEnd: (e) => {}
   onResponderMove: (e, gestureState) => {}
 }
+var options = {
+  transformX: true,
+  transformY: true
+}
 new PinchZoomResponder(responders, options)
 ```
 
-The options fields can include:
+The `options` object is optional and it's fields can include:
 
 - `transformX` true | false.  True by default. Enables transformation along the X axis
 - `transformY` true | false.  True by default.  Enables transformation along the Y axis.

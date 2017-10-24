@@ -3,8 +3,8 @@ import MatrixMath from 'react-native/Libraries/Utilities/MatrixMath'
 export class PinchZoomResponder {
   constructor (responders, options = {}) {
     this.responders = responders
-    this.transformX = options.transformX || true
-    this.transformY = options.transformY || true 
+    this.transformX = typeof options.transformX === 'undefined' ? true : options.transformX
+    this.transformY = typeof options.transformY === 'undefined' ? true : options.transformY
     this.handlers = {
       onStartShouldSetResponder: this.onStartShouldSetResponder.bind(this),
       onMoveShouldSetResponder: this.onMoveShouldSetResponder.bind(this),
