@@ -74,7 +74,7 @@ class MyComponent extends Component {
 
   render () {
     return (
-      <View {...this.pinchZoomResponder.handlers}>
+      <View {...this.pinchZoomResponder.handlers} onLayout={(e) => this._onLayout(e)}>
         <Text ref={(ref) => { this.transformView = ref }}>Pinch me!</Text>
       </View>
     )
