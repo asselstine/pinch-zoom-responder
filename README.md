@@ -23,25 +23,59 @@ import PinchZoomResponder from 'react-native-pinch-zoom-responder'
 class MyComponent extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      width: 1,
+      height: 1
+    }
     this.pinchZoomResponder = new PinchZoomResponder({
-      onPinchStart: (e) => {
+      onPinchZoomStart: (e) => {
         console.log('pinch started')
       },
 
-      onPinchEnd: (e) => {
+      onPinchZoomEnd: (e) => {
         console.log('pinch ended')
       },
 
       onResponderMove: (e, gestureState) => {
-        console.log('GestureState is ', gestureState)
+        if (gestureState) {
+          console.log('GestureState is ', gestureState)
+          var transform = this._applyOriginTransform(gestureState.transform)
+          this._setTransform(transform)
+        }
       }
     })
+  }
+
+  _onLayout (event) {
+    this.setState({
+      width: event.nativeEvent.layout.width,
+      height: event.nativeEvent.layout.height
+    })
+  }
+
+  _setTransform (matrix) {
+    this.transformView.setNativeProps({ style: { transform: [{perspective: 1000}, { matrix: matrix }] } })
+  }
+
+  /*
+  React Native view transforms have the component center as their origin,
+  so we need to wrap our transform with translations that compensate for this and
+  place the origin at 0,0
+  */
+  _applyOriginTransform (matrix) {
+    var translate = MatrixMath.createIdentityMatrix()
+    var copy = matrix.slice()
+    MatrixMath.reuseTranslate2dCommand(translate, (this.state.width / 2.0), (this.state.height / 2.0))
+    MatrixMath.multiplyInto(copy, matrix, translate)
+    MatrixMath.reuseTranslate2dCommand(translate, -(this.state.width / 2.0), -(this.state.height / 2.0))
+    MatrixMath.multiplyInto(copy, translate, copy)
+    return copy
   }
 
   render () {
     return (
       <View {...this.pinchZoomResponder.handlers}>
-        <Text>Pinch me!</Text>
+        <Text ref={(ref) => { this.transformView = ref }}>Pinch me!</Text>
       </View>
     )
   }
@@ -70,8 +104,8 @@ The responder can also receive a set of options as the second parameter.
 
 ```javascript
 var responders = {
-  onPinchStart: (e) => {}
-  onPinchEnd: (e) => {}
+  onPinchZoomStart: (e) => {}
+  onPinchZoomEnd: (e) => {}
   onResponderMove: (e, gestureState) => {}
 }
 var options = {
