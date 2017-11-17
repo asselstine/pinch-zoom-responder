@@ -76,11 +76,17 @@ class MyComponent extends Component {
     return (
       <View {...this.pinchZoomResponder.handlers} onLayout={(e) => this._onLayout(e)}>
         <Text ref={(ref) => { this.transformView = ref }}>Pinch me!</Text>
+        <View
+          style={{position: 'absolute', left: 0, top: 0, bottom: 0, right: 0}}
+          height='100%'
+          width='100%' />
       </View>
     )
   }
 }
 ```
+
+##### NOTICE the absolutely positioned view! This is a hack to ensure the event's locationX coordinates are not transformed.
 
 The gestureState object has the shape:
 
