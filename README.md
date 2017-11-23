@@ -18,6 +18,7 @@ import {
   View,
   Text
 } from 'react-native'
+import MatrixMath from 'react-native/Libraries/Utilities/MatrixMath'
 import PinchZoomResponder from 'react-native-pinch-zoom-responder'
 
 class MyComponent extends Component {
